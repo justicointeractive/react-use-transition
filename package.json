@@ -17,7 +17,8 @@
     "prepare": "dts build",
     "size": "size-limit",
     "start": "dts watch",
-    "test": "dts test --passWithNoTests"
+    "test": "dts test --passWithNoTests",
+    "release": "release-it"
   },
   "husky": {
     "hooks": {
@@ -59,6 +60,7 @@
     "husky": "^7.0.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "release-it": "^14.12.5",
     "size-limit": "^7.0.8",
     "tslib": "^2.3.1",
     "typescript": "^4.5.5"
