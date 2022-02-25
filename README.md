@@ -1,10 +1,12 @@
-# react-use-transition
+# react-use-simple-transition
 
 Transition elements on and off of screen easily. It helps you mount/dismount elements, add/remove classes and holds a ref of a value so you can display it while a transition is happening.
 
 ## Usage
 
 ```tsx
+import { useTransition } from 'react-use-simple-transition';
+
 export function MyComponent({ item }: { item?: { title: string } }) {
   const [wrapperRef, setWrapperRef] = useState<HTMLElement | null>(null);
 

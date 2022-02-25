@@ -1,10 +1,10 @@
 {
-  "name": "react-use-transition",
+  "name": "react-use-simple-transition",
   "version": "0.1.0",
   "license": "MIT",
   "author": "Joe Flateau",
   "main": "dist/index.js",
-  "module": "dist/react-use-transition.esm.js",
+  "module": "dist/react-use-simple-transition.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
@@ -42,11 +42,11 @@
   },
   "size-limit": [
     {
-      "path": "dist/react-use-transition.cjs.production.min.js",
+      "path": "dist/react-use-simple-transition.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/react-use-transition.esm.js",
+      "path": "dist/react-use-simple-transition.esm.js",
       "limit": "10 KB"
     }
   ],
