@@ -12,7 +12,10 @@ export function MyComponent({ item }: { item?: { title: string } }) {
     mounted, // boolean, should your element be mounted?
     activeClass, // boolean, should your transition classes be applied?
     value: displayItem, // object, your data item, a ref is held while the element transitions out
-  } = useTransitions(wrapperRef, item);
+  } = useTransition(
+    wrapperRef, // ref to an element that wraps your transitions, transitions in child elements are also accounted for
+    item // an object or null, when null transitions out, when not null, transitions in
+  );
 
   if (!mounted) {
     return null;
@@ -27,7 +30,9 @@ export function MyComponent({ item }: { item?: { title: string } }) {
           activeClass ? 'ease-out translate-y-0' : 'ease-in translate-y-full'
         )}
       >
-        {displayItem.title}
+        <div className={classNames(activeClass ? 'opacity-1' : 'opacity-0')}>
+          {displayItem.title}
+        </div>
       </div>
     ) || null
   );
