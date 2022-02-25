@@ -9,18 +9,18 @@ export function useTransition<T>(
   value: T | null;
 } {
   const shouldBeVisible = value != null;
-  const [transitions, setTransitions] = useState(0);
+  const [transitions, setTransitions] = useState<EventTarget[]>([]);
   const [transitionMayBeStarting, setTransitionMayBeStarting] = useState(false);
   const shouldBeVisibleRef = useRef(shouldBeVisible);
   const [hasBeenMounted, setHasBeenMounted] = useState(false);
   const [transitionValue, setTransitionValue] = useState(value);
 
   useEffect(() => {
-    function onTransitionStart() {
-      setTransitions((t) => t + 1);
+    function onTransitionStart({ target: eventTarget }: Event) {
+      eventTarget && setTransitions((t) => [...t, eventTarget]);
     }
-    function onTransitionEnd() {
-      setTransitions((t) => t - 1);
+    function onTransitionEnd({ target: eventTarget }: Event) {
+      setTransitions((t) => t.filter((target) => target != eventTarget));
     }
     if (ref) {
       ref.addEventListener('transitionstart', onTransitionStart);
@@ -42,7 +42,7 @@ export function useTransition<T>(
 
   const shouldBeMounted =
     shouldBeVisible ||
-    transitions > 0 ||
+    transitions.length > 0 ||
     transitionMayBeStarting ||
     shouldBeVisible !== shouldBeVisibleRef.current;
 
