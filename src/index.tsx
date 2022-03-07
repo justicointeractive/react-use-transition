@@ -34,10 +34,13 @@ export function useTransition<T>(
   }, [ref]);
 
   useEffect(() => {
-    setTransitionMayBeStarting(true);
-    shouldBeVisibleRef.current = shouldBeVisible;
-    const timeout = setTimeout(() => setTransitionMayBeStarting(false), 250);
-    return () => clearTimeout(timeout);
+    if (shouldBeVisibleRef.current !== shouldBeVisible) {
+      setTransitionMayBeStarting(true);
+      shouldBeVisibleRef.current = shouldBeVisible;
+      const timeout = setTimeout(() => setTransitionMayBeStarting(false), 250);
+      return () => clearTimeout(timeout);
+    }
+    return;
   }, [shouldBeVisible]);
 
   const shouldBeMounted =
@@ -52,6 +55,7 @@ export function useTransition<T>(
       return () => clearTimeout(timeout);
     } else {
       setHasBeenMounted(false);
+      return;
     }
   }, [shouldBeMounted]);
 
