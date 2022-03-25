@@ -6,7 +6,7 @@ export function useTransition<T>(
 ): {
   mounted: boolean;
   activeClass: boolean;
-  value: T | null;
+  snapshot: T | null;
 } {
   const shouldBeVisible = value != null;
   const [transitions, setTransitions] = useState<EventTarget[]>([]);
@@ -74,6 +74,6 @@ export function useTransition<T>(
   return {
     mounted: shouldBeMounted,
     activeClass: shouldHaveActiveClass,
-    value: transitionValue,
+    snapshot: transitionValue,
   };
 }
