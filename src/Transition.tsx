@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, useState } from 'react';
+import React, { Dispatch, ReactNode, useState } from 'react';
 import { useTransition } from './useTransition';
 
 export function Transition<T>({
